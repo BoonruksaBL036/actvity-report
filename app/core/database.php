@@ -1,7 +1,13 @@
 <?php
 class Database {
     public static function connect() {
-        $mysqli = new mysqli("localhost", "root", "", "student_report_db");
+        $config = require __DIR__ . '/../config/config.php';
+        $mysqli = new mysqli(
+            $config['db_host'],
+            $config['db_user'],
+            $config['db_pass'],
+            $config['db_name']
+        );
         if ($mysqli->connect_errno) {
             die("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
         }
